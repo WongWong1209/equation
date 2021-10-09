@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>一元二次方程式</title>
+    </head>
+    <br>
+    <h1 id="title">一元二次方程式計算機</h1>
+    <ul id="equation">
+        <li><textarea id="a"></textarea></li>
+        <li><p>x²+</p></li>
+        <li><textarea id="b"></textarea></li>
+        <li><p>x+</p></li>
+        <li><textarea id="c"></textarea></li>
+    </ul>
+    <button id="enterBtn" onclick="OnEnter();">Enter</button>
+    <br>
+    <textarea readonly id="output"></textarea>
+<style>
+    #title {
+        margin-left: 40px;
+    }
+
+    #equation li {
+        display: inline-block;
+    }
+
+    p {
+        font-size: 30px;
+    }
+
+    #enterBtn {
+        margin-left: 40px;
+        width: 100px;
+        height: 50px;
+    }
+
+    #output {
+        width: 500px;
+        height: 300px;
+        margin-top: 30px;
+        margin-left: 40px;
+    }
+
+    textarea {
+        font-size: 20px;
+    }
+</style>
+<script>
+    var a = 0;
+    var b = 0;
+    var c = 0;
+    var judge = 0;
+    var outputTextarea;
+
+    function OnEnter() {
+        a = parseInt(document.getElementById("a").value, 10);
+        b = parseInt(document.getElementById("b").value, 10);
+        c = parseInt(document.getElementById("c").value, 10);
+        outputTextarea = document.getElementById("output");
+
+        judge = Math.pow(b, 2) - (4 * a * c);
+
+        if(judge < 0) {
+            console.log("min");
+            outputTextarea.innerHTML = 
+            "無實數解";
+            console.log("min");
+        } else if(judge == 0) {
+            outputTextarea.innerHTML = 
+            "有一重根" +
+            "\nx = " + ((-b + Math.sqrt(judge)) / (2 * a)).toString();
+        } else if(judge > 0) {
+            outputTextarea.innerHTML = 
+            "有兩實數解" +
+            "\nx = " + ((-b + Math.sqrt(judge)) / (2 * a)).toString() + ", " + ((-b - Math.sqrt(judge)) / (2 * a)).toString();
+        } else {
+            outputTextarea.innerHTML = 
+            "錯誤";
+        }
+    }
+</script>
